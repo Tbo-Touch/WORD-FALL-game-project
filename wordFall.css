@@ -1,0 +1,36 @@
+body{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    /*width: 100%;
+    height: 100%;*/
+    position: fixed;
+    /*display: block;*/
+}
+
+#userInput{
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+
+.fallingWord {
+    position: absolute;
+    left: 50%; /* Adjust the starting position as needed */
+    transform: translateX(-50%);
+    font-size: 20px; /* Adjust font size as needed */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(-100vh);
+    }
+}
