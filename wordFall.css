@@ -21,6 +21,17 @@ img{
     border-radius: 5px;
 }
 
+#startBtn{
+    z-index: 1000;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+  }
+
 
 .fallingWord {
     position: absolute;

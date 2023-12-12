@@ -14,7 +14,7 @@ const fetchWords = async () => {
 let wordsArray = [];
 
 const startGame = async () => {
-    wordsArray = await fetch();
+    wordsArray = await fetchWords();
     startWordFall();
     startTimer();
 };
@@ -24,11 +24,15 @@ const startWordFall = () => {
     const speed = 5;
     const initDelay = 1000;
 
+    //Todo: Set a break condition for this startWordFall
+
+    /*declare end game function*/
+
     //word delay function
     setTimeout(() => {
         //new word div element
         const newWords = document.createElement('div');
-        newWords.classList.add('fallingWord');
+        newWords.classList.add('fallingWord');// adding class to div
 
         //randomizing words in the array
         const randomWords = Math.floor(Math.random() * wordsArray.length);
@@ -45,10 +49,12 @@ const startWordFall = () => {
 };
 
 const animateWords = (newWords,speed) => {
-    const animationDuration = 3000 / speed; 
+    const animationDuration = 300000 / speed; 
     const screenHeight = window.innerHeight;
 
         // Apply CSS animation properties
+        let wordElement = document.getElementById('wordElement');
+
         wordElement.style.animation = `fall ${animationDuration}s linear`;
         wordElement.style.top = screenHeight + 'px';
     
@@ -66,7 +72,7 @@ const startTimer = () => {
 
         if (seconds <= 0) {
             clearInterval(timerInterval);
-            endGame();
+            //endGame();
         }
     }, 1000);
 };
@@ -80,17 +86,29 @@ const handleUserInput = () => {
     if (userInput.value.trim().toLowerCase() === currentWord.toLowerCase()) {
         increaseScore();
         playCorrectSound();
-        wordsArray.shift();
+        wordsArray.shift(); // possiblity of udefined returned
         userInput.value = '';
 
         if (wordsArray.length === 0) {
             fetchWords().then(newWords => {
                 wordsArray = newWords;
-                startWordFalling();
+                startWordFall();
             });
         }
     }
 };
+
+    var myButton = document.getElementById('startBtn');
+
+    // Define a function that will be called when the button is clicked
+    function handleClick() {
+        startGame()
+        }
+
+    
+    myButton.addEventListener('click', handleClick);
+
+
 
 /*fetch('WordFall.txt')
     .then(response => response.text())
